@@ -1,0 +1,140 @@
+.card {
+  flex-grow: 1;
+  height: calc(100vh - 128px);
+  overflow: auto;
+
+  &__content {
+    padding: 24px 40px;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    color: $color-font--dark;
+    font-size: 20px;
+    line-height: 24px;
+
+    button {
+      margin-left: 12px;
+    }
+  }
+
+  &__section {
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid $color-secondary--lighter;
+  }
+
+  &__section-title {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+
+    &--edit {
+      display: flex;
+      align-items: center;
+
+      button {
+        margin-left: 16px;
+      }
+    }
+  }
+
+  &__section-row {
+    display: flex;
+    margin-bottom: 12px;
+  }
+
+  &__section-key {
+    width: 155px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  &__section-value {
+    flex-grow: 1;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+
+    &--colored {
+      color: $color-main;
+    }
+  }
+
+  &__photos {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+
+  &__photo {
+    margin-right: 24px;
+    margin-bottom: 20px;
+  }
+
+  &__photo-img {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin-bottom: 8px;
+    background-size: cover;
+  }
+
+  &__photo-delete {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+  }
+
+  &__photo-title {
+    margin-bottom: 4px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  &__photo-date {
+    font-size: 12px;
+    line-height: 16px;
+    color: $color-secondary--dark;
+  }
+}
+
+.card-navigation {
+  display: flex;
+  padding: 26px 40px;
+  justify-content: space-between;
+  border-bottom: 1px solid $color-secondary--lighter;
+
+  &__back {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: $color-main;
+
+    .icon {
+      margin-right: 16px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    list-style: none;
+  }
+
+  &__button {
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-right: 24px;
+    }
+  }
+}

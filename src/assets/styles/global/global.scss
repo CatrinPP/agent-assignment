@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 html {
   box-sizing: border-box;
 }
@@ -6,11 +8,13 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0 auto;
   padding: 0;
 
@@ -24,13 +28,90 @@ body {
 }
 
 a {
-  color: $color-font;
+  color: inherit;
   text-decoration: none;
 }
 
 img {
   max-width: 100%;
   height: auto;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+.button {
+  width: 400px;
+  padding: 10px 38px;
+  text-align: center;
+  border: 1px solid $color-secondary--extra-light;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: $color-main;
+
+  &--add {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      width: 1px;
+      height: 12px;
+      background-color: $color-main;
+      transform: translate(0, -50%);
+    }
+
+    &::after {
+      transform: translate(0, -50%) rotate(90deg);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: $color-main--lighter;
+    outline: none;
+
+    &::after,
+    &::before {
+      background-color: $color-main--lighter;
+    }
+  }
+
+  &:active {
+    color: $color-main--dark;
+
+    &::after,
+    &::before {
+      background-color: $color-main--dark;
+    }
+  }
+}
+
+.edit {
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    .icon {
+      path {
+        fill: $color-main--lighter;
+      }
+    }
+  }
+
+  &:active {
+    .icon {
+      path {
+        fill: $color-main--dark;
+      }
+    }
+  }
 }
 
 .visually-hidden,

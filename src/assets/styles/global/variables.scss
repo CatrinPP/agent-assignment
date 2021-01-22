@@ -1,22 +1,31 @@
 //Цвета
 $white: #ffffff;
 $black: #3b3b3b;
+$blackDark: #222;
 $blackFade: #b9b9b9;
 $green: #82B284;
 $greenLight: #a4c7a5;
+$greenDark: #58a742;
 $gray: #eee;
+$grayDark: #808080;
 $grayLight: #e5e5e5;
 $grayExtraLight: #e5e5e5;
+$grayLightest: #f7f7f7;
 $red: #d95151;
 
 $color-main: $green;
 $color-main--lighter: $greenLight;
+$color-main--dark: $greenDark;
 $color-secondary: $gray;
+$color-secondary--dark: $grayDark;
 $color-secondary--lighter: $grayLight;
-$color-secondary--lightest: $grayExtraLight;
+$color-secondary--extra-light: $grayExtraLight;
+$color-secondary--lightest: $grayLightest;
 $color-background: $white;
 $color-warning: $red;
 $color-font: $black;
+$color-font--fade: $blackFade;
+$color-font--dark: $blackDark;
 
 //Шрифты
 $font-main: "Proxima Nova", Arial, sans-serif;

@@ -1,0 +1,55 @@
+.info-panel {
+  position: relative;
+  width: 224px;
+  height: calc(100vh - 128px);
+  background-color: $color-secondary--lightest;
+  overflow: auto;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 21px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.072) 0%, rgba(255, 255, 255, 0) 100%);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+  }
+
+  &__heading {
+    padding: 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 160%;
+  }
+
+  &__text {
+    font-size: 12px;
+    line-height: 160%;
+    letter-spacing: 0.2px;
+  }
+
+  &__menu {
+    list-style: none;
+    color: $color-main;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  &__menu-item {
+    display: flex;
+    align-items: center;
+    padding: 13px 16px;
+    background-color: $color-secondary;
+
+    .icon {
+      margin-right: 12px;
+    }
+  }
+}
