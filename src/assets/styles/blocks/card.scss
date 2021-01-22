@@ -4,7 +4,7 @@
   overflow: auto;
 
   &__content {
-    padding: 24px 40px;
+    padding: 21px 40px 12px;
   }
 
   &__title {
@@ -22,12 +22,15 @@
 
   &__section {
     padding-bottom: 32px;
-    margin-bottom: 32px;
     border-bottom: 1px solid $color-secondary--lighter;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
 
   &__section-title {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     text-transform: uppercase;
     font-weight: 300;
     font-size: 16px;
@@ -49,7 +52,7 @@
   }
 
   &__section-key {
-    width: 155px;
+    width: 162px;
     font-weight: 300;
     font-size: 14px;
     line-height: 20px;
@@ -74,7 +77,7 @@
 
   &__photo {
     margin-right: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   &__photo-img {

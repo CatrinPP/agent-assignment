@@ -1,12 +1,13 @@
 .footer {
   width: 100%;
   height: 128px;
-  padding-top: 30px;
+  padding-top: 18px;
   padding-bottom: 30px;
   padding-left: 312px;
   background-color: $color-background;
 
   &__text {
+    margin-bottom: 16px;
     text-align: center;
     color: $color-font--fade;
     line-height: 16px;
