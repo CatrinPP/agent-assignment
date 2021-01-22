@@ -1,0 +1,27 @@
+//Цвета
+$white: #ffffff;
+$black: #3b3b3b;
+$blackFade: #b9b9b9;
+$green: #82B284;
+$greenLight: #a4c7a5;
+$gray: #eee;
+$grayLight: #e5e5e5;
+$grayExtraLight: #e5e5e5;
+$red: #d95151;
+
+$color-main: $green;
+$color-main--lighter: $greenLight;
+$color-secondary: $gray;
+$color-secondary--lighter: $grayLight;
+$color-secondary--lightest: $grayExtraLight;
+$color-background: $white;
+$color-warning: $red;
+$color-font: $black;
+
+//Шрифты
+$font-main: "Proxima Nova", Arial, sans-serif;
+
+//Версии экранов
+$tablet-width: 768px;
+$desktop-width: 1150px;
+$mobile-width-only: 767px;

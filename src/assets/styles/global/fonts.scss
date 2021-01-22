@@ -1,0 +1,5 @@
+@import './mixins.scss';
+
+@include proximaNova("light", 300, normal);
+@include proximaNova("regular", 400, normal);
+@include proximaNova("semibold", 600, normal);

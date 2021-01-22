@@ -1,0 +1,11 @@
+@mixin proximaNova($font, $weight, $style) {
+  @font-face {
+    font-family: "Proxima Nova";
+    src:
+      url("../../fonts/proximanova-#{$font}.woff2") format("woff2"),
+      url("../../fonts/proximanova-#{$font}.woff") format("woff");
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
