@@ -90,6 +90,11 @@ button {
       background-color: $color-main--dark;
     }
   }
+
+  @media(max-width: $mobile-width-only) {
+    width: 100%;
+    max-width: 400px;
+  }
 }
 
 .edit {

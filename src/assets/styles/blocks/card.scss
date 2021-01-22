@@ -106,6 +106,20 @@
     line-height: 16px;
     color: $color-secondary--dark;
   }
+
+  @media(max-width: $mobile-width-only) {
+    &__content {
+      padding: 20px;
+    }
+
+    &__section-row {
+      flex-direction: column;
+    }
+
+    &__section-key {
+      width: 100%;
+    }
+  }
 }
 
 .card-navigation {
@@ -138,6 +152,17 @@
 
     &:not(:last-child) {
       margin-right: 24px;
+    }
+  }
+
+  @media(max-width: $mobile-width-only) {
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__back {
+      margin-bottom: 16px;
     }
   }
 }

@@ -12,4 +12,8 @@
     color: $color-font--fade;
     line-height: 16px;
   }
+
+  @media(max-width: $mobile-width-only) {
+    padding: 18px;
+  }
 }

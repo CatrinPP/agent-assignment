@@ -22,4 +22,15 @@
       background-color: $color-main--lighter;
     }
   }
+
+  @media(max-width: $mobile-width-only) {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+
+    &__top,
+    &__bottom {
+      flex-direction: row;
+    }
+  }
 }

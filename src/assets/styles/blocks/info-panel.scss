@@ -52,4 +52,10 @@
       margin-right: 12px;
     }
   }
+
+  @media(max-width: $mobile-width-only) {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+  }
 }
