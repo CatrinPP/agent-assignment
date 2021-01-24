@@ -1,9 +1,9 @@
-// import Popup from './popup';
+import PopupActions from './popup';
 import AuthActions from './auth';
 import DataActions from './data';
 
 export {
-  // Popup,
+  PopupActions,
   AuthActions,
   DataActions,
 };

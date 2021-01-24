@@ -1,6 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import moment from 'moment';
+
+import { DataActions, PopupActions } from '../../redux/actions';
+
 import ButtonEdit from '../button-edit/button-edit';
 import IconArrow from '../icons/icon-arrow';
 import IconLink from '../icons/icon-link';
@@ -20,7 +24,12 @@ const getCompanyType = (array) => {
 
 const getPhoneFormated = (phone) => `+7 (${phone.substr(1, 3)}) ${phone.substr(4, 3)}-${phone.substr(7, 2)}-${phone.substr(9, 2)}`;
 
-const Card = ({company, contact}) => {
+const Card = ({
+  company,
+  contact,
+  showPopup,
+  deleteCard,
+}) => {
   if (!company || !contact) {
     return <></>;
   }
@@ -55,7 +64,21 @@ const Card = ({company, contact}) => {
             <button className="card-navigation__button  card-navigation__button--refresh" type='button' aria-label="Обновить">
               <IconRotation />
             </button>
-            <button className="card-navigation__button  card-navigation__button--delete" type='button' aria-label="Удалить карточку">
+            <button
+              className="card-navigation__button  card-navigation__button--delete"
+              type='button'
+              aria-label="Удалить карточку"
+              onClick={() => {
+                showPopup('DeleteCardPopup', {
+                  title: 'Удалить карточку',
+                  text: 'Отправить карточку организации  в архив?',
+                  propsForBasePopup: {
+                    actionBtnText: 'Удалить',
+                    onActionBtnClick: () => deleteCard(company.id),
+                  },
+                });
+              }}
+            >
               <IconBin />
             </button>
           </li>
@@ -124,4 +147,18 @@ const Card = ({company, contact}) => {
   );
 };
 
-export default Card;
+export default connect(
+  () => ({
+  }),
+  (dispatch) => ({
+    showPopup: (popupId, popupData = {}, closeOtherPopups = true) => {
+      dispatch(PopupActions.showPopup(popupId, popupData, closeOtherPopups));
+    },
+    closePopup: (popupId) => {
+      dispatch(PopupActions.closePopup(popupId));
+    },
+    deleteCard: (companyId) => {
+      dispatch(DataActions.deleteCard(companyId));
+    },
+  }),
+)(Card);

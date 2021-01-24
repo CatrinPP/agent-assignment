@@ -7,10 +7,10 @@ import {
 
 import { PopupActions } from '../redux/actions';
 
-import InfoPopup from './InfoPopup';
+import DeleteCardPopup from './DeleteCardPopup';
 
 const popupComponents = () => ({
-  InfoPopup: () => InfoPopup,
+  DeleteCardPopup: () => DeleteCardPopup,
 });
 
 const popupComponentProps = {};
@@ -23,7 +23,6 @@ class Popups extends React.Component {
       activePopupList,
       closePopup,
       showPopup,
-      variables,
     } = this.props;
 
     if (activePopupList.length === 0) {
@@ -62,7 +61,6 @@ class Popups extends React.Component {
           popupData={popupData}
           closePopup={closePopup}
           showPopup={showPopup}
-          variables={variables}
         />
       );
     }
@@ -90,7 +88,6 @@ class Popups extends React.Component {
 export default connect(
   (state) => ({
     activePopupList: state.PopupReducer.activePopupList,
-    variables: state.VariablesReducer.variables,
   }),
   (dispatch) => ({
     showPopup: (popupId, popupData = {}, closeOtherPopups = true) => {

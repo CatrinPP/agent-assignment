@@ -1,29 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PopupHeader from './popupComponents/PopupHeader';
-
 const Popup = (
   {
     children,
     popupId,
-    classCustom,
-    headerText,
     actionBtnText,
     onActionBtnClick,
     closePopup,
   },
 ) => (
   <div className='popup'>
-    <div className={`popup-block ${popupId} ${classCustom}`}>
-      <div className='popup-in'>
-        <PopupHeader popupId={popupId} text={headerText}/>
-        <div className='popup-content'>
+    <div className={`popup__block ${popupId}`}>
+      <div className='popup__in'>
+        <div className='popup__content'>
           {children}
         </div>
         <div className="popup__buttons">
-          <button type="button" onClick={closePopup}>Отмена</button>
-          <button type="button" onClick={onActionBtnClick}>{actionBtnText}</button>
+          <button className="popup__button  popup__button--cancel" type="button" onClick={() => closePopup(popupId)}>Отмена</button>
+          <button
+            className="popup__button  popup__button--action"
+            type="button"
+            onClick={() => {
+              onActionBtnClick();
+              closePopup(popupId);
+            }}
+          >{actionBtnText}
+          </button>
         </div>
       </div>
     </div>
@@ -31,15 +34,12 @@ const Popup = (
 );
 
 Popup.defaultProps = {
-  classCustom: '',
-  headerText: '',
   onActionBtnClick: () => {},
 };
 
 Popup.propTypes = {
-  classCustom: PropTypes.string,
   popupId: PropTypes.string.isRequired,
-  headerText: PropTypes.string,
+  actionBtnText: PropTypes.string.isRequired,
   onActionBtnClick: PropTypes.func,
 };
 

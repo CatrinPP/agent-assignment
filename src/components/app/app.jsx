@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Main from '../main/main';
+
 import { AuthorizationStatus } from '../../const';
+
+import Main from '../main/main';
+import Popups from '../../popups';
 
 import { AuthActions, DataActions } from '../../redux/actions';
 
@@ -31,7 +34,10 @@ class App extends React.Component {
             exact
             path='/'
             render={() => (
-              <Main authorizationStatus={authorizationStatus} />
+              <>
+                <Popups/>
+                <Main authorizationStatus={authorizationStatus} />
+              </>
             )}
           />
         </Switch>
