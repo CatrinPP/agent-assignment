@@ -1,0 +1,5 @@
+export default {
+  FAQ_IN_PROCESS: 'FAQ_IN_PROCESS',
+  FAQ_SUCCESS: 'FAQ_SUCCESS',
+  FAQ_FAILED: 'FAQ_FAILED',
+};

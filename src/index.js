@@ -1,17 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import reducer from './reducer/reducer';
-import App from './components/app/app';
+import thunk from 'redux-thunk';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import allReducers from './reducer/reducer';
+import createAPI from './api';
+import {Operation as UserOperation} from './reducer/user/user';
+import {App} from './components/app/app';
 
 import './index.scss';
 
+const api = createAPI();
+
 const store = createStore(
-  reducer,
-  // eslint-disable-next-line no-underscore-dangle
-  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f,
+  allReducers,
+  composeWithDevTools(
+    applyMiddleware(thunk.withExtraArgument(api)),
+  ),
 );
+
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
   <Provider store={store}>

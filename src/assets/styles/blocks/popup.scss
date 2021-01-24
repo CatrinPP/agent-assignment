@@ -1,0 +1,55 @@
+@import '../global/variables';
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 9999999;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+  justify-content: flex-start;
+  font-family: $font-main;
+
+  @media (min-width: $mobile-width-only) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  &-block {
+    padding: 57px 26px 32px;
+    background-color: $color-background;
+    width: 343px;
+    height: auto;
+    border-radius: 8px;
+    margin: auto;
+
+    @media (max-width: $mobile-width-only) {
+      width: 320px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  &-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $white;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1em;
+    text-align: center;
+
+    @media (max-width: $mobile-width-only) {
+      margin-top: 10px;
+    }
+  }
+}
