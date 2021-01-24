@@ -1,90 +1,60 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {Main} from '../main/main';
-import {getAuthorizationStatus} from '../../reducer/user/selectors';
+import Main from '../main/main';
 import { AuthorizationStatus } from '../../const';
-import {Operation as DataOperation} from '../../reducer/data/data';
 
-// import {Operation as UserOperation} from '../../reducer/user/user';
-// import {Operation as DataOperation} from '../../reducer/data/data';
-// import {getServerError} from '../../reducer/app/selectors';
-// import {getLoadedState} from '../../reducer/data/selectors';
+import { AuthActions, DataActions } from '../../redux/actions';
 
-// const App = ({authorizationStatus, isLoaded, serverError}) => {
-const App = ({authorizationStatus, loadCompanyData, loadContactData}) => {
-  loadCompanyData();
-  loadContactData();
-
-  if (authorizationStatus === AuthorizationStatus.AUTH) {
-    // DataOperation.loadCompany();
-    // DataOperation.loadContact();
+class App extends React.Component {
+  componentDidMount() {
+    const { checkAuth } = this.props;
+    checkAuth();
   }
 
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route
-          exact
-          path='/'
-          render={() => (
-            <Main authorizationStatus={authorizationStatus} />
-          )}
-        />
-      </Switch>
-    </BrowserRouter>
-  );
-};
+  componentDidUpdate(prevProps) {
+    const { authorizationStatus, loadCompanyData } = this.props;
 
-// if (!isLoaded && serverError) {
-//   return (
-//     <p>Ошибка</p>
-//   );
-// }
+    if (prevProps.authorizationStatus !== authorizationStatus && authorizationStatus === AuthorizationStatus.AUTH) {
+      loadCompanyData();
+    }
+  }
 
-// if (!isLoaded) {
-//   return (
-//     <p>Пусто</p>
-//   );
-// }
+  render() {
+    const { authorizationStatus } = this.props;
 
-//   return (
-//     <BrowserRouter>
-//       <Switch>
-//         <Route
-//           exact
-//           path='/'
-//           render={() => (
-//             <Main authorizationStatus={authorizationStatus} />
-//           )}
-//         />
-//       </Switch>
-//     </BrowserRouter>
-//   );
-// };
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path='/'
+            render={() => (
+              <Main authorizationStatus={authorizationStatus} />
+            )}
+          />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 App.propTypes = {
-  // authorizationStatus: PropTypes.string.isRequired,
-  // isLoaded: PropTypes.bool.isRequired,
-  // serverError: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  loadCompanyData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
-  // isLoaded: getLoadedState(state),
-  // serverError: getServerError(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadCompanyData() {
-    dispatch(DataOperation.loadCompany());
-  },
-
-  loadContactData() {
-    dispatch(DataOperation.loadContact());
-  },
-});
-
-export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  (state) => ({
+    authorizationStatus: state.AuthReducer.authorizationStatus,
+  }),
+  (dispatch) => ({
+    checkAuth: () => {
+      dispatch(AuthActions.checkAuth());
+    },
+    loadCompanyData: () => {
+      dispatch(DataActions.loadCompanyData());
+    },
+  }),
+)(App);

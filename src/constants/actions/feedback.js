@@ -1,3 +1,0 @@
-export default {
-  FEEDBACK_IN_PROCESS: 'FEEDBACK_IN_PROCESS',
-};

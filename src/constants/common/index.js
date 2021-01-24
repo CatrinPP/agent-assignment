@@ -1,17 +1,36 @@
-import Masks from './masks';
-import RegExp from './regExp';
-import Inputs from './inputs';
-import Analytics from './analytics';
-import SliderItems from './sliderItems';
-import PrizesItems from './prizesItems';
-import RulesItems from './rulesItems';
+const BASE_URL = 'http://localhost:3000/';
+const RADIX = 10;
+const TIMEOUT = 5000;
 
-export default {
-  Masks,
-  RegExp,
-  Inputs,
-  Analytics,
-  SliderItems,
-  PrizesItems,
-  RulesItems,
+const AppRoute = {
+  FAVORITES: '/favorites',
+  LOGIN: '/login',
+  OFFER: '/offer',
+  ROOT: '/',
+};
+
+const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+};
+
+const Error = {
+  BAD_REQUEST: 400,
+  SERVER_ERROR: 500,
+  UNAUTHORIZED: 401,
+};
+
+const FavoriteRequiredAction = {
+  ADD: 1,
+  DELETE: 0,
+};
+
+export {
+  AppRoute,
+  AuthorizationStatus,
+  BASE_URL,
+  Error,
+  FavoriteRequiredAction,
+  RADIX,
+  TIMEOUT,
 };
