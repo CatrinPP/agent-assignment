@@ -67,6 +67,10 @@
     &--colored {
       color: $color-main;
     }
+
+    &--capitalized::first-letter {
+      text-transform: capitalize;
+    }
   }
 
   &__photos {

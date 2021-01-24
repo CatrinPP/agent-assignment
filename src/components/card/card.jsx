@@ -1,24 +1,44 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import moment from 'moment';
 import ButtonEdit from '../button-edit/button-edit';
 import IconArrow from '../icons/icon-arrow';
 import IconLink from '../icons/icon-link';
 import IconRotation from '../icons/icon-rotation';
 import IconBin from '../icons/icon-bin';
 import IconClose from '../icons/icon-close';
-import Img1 from '../../assets/img/img1.jpg';
-import Img2 from '../../assets/img/img2.jpg';
-import Img3 from '../../assets/img/img3.jpg';
 
-// const CompanyType = {
-//   agent: 'агент',
-//   contractor: 'подрядчик',
-// };
+const CompanyType = {
+  agent: 'агент',
+  contractor: 'подрядчик',
+};
+
+const getCompanyType = (array) => {
+  array.map((it, idx) => array.splice(idx, 1, CompanyType[it]));
+  return array.join(', ');
+};
+
+const getPhoneFormated = (phone) => `+7 (${phone.substr(1, 3)}) ${phone.substr(4, 3)}-${phone.substr(7, 2)}-${phone.substr(9, 2)}`;
 
 const Card = ({company, contact}) => {
   if (!company || !contact) {
     return <></>;
   }
+
+  const phone = getPhoneFormated(contact.phone);
+  const companyType = getCompanyType(company.type);
+
+  const renderPhoto = (photo) => (
+    <li className="card__photo" key={photo.name}>
+      <div className="card__photo-img" style={{backgroundImage: `url(${photo.thumbpath})`}}>
+        <button className="card__photo-delete" type="button" aria-label="удалить фото">
+          <IconClose />
+        </button>
+      </div>
+      <p className="card__photo-title">{photo.name}</p>
+      <p className="card__photo-date">11 июня 2018</p>
+    </li>
+  );
 
   return (
     <div className="card">
@@ -58,7 +78,7 @@ const Card = ({company, contact}) => {
             </div>
             <div className="card__section-row">
               <p className="card__section-key">Договор</p>
-              <p className="card__section-value">{company.contract.no} от 12.03.2015</p>
+              <p className="card__section-value">{company.contract.no} от <time dateTime={moment(company.contract.date).format('YYYY-MM-DD')}>{moment(company.contract.issue_date).format('DD.MM.YYYY')}</time></p>
             </div>
             <div className="card__section-row">
               <p className="card__section-key">Форма</p>
@@ -66,7 +86,7 @@ const Card = ({company, contact}) => {
             </div>
             <div className="card__section-row">
               <p className="card__section-key">Тип</p>
-              <p className="card__section-value">Агент, подрядчик</p>
+              <p className="card__section-value  card__section-value--capitalized">{companyType}</p>
             </div>
           </div>
         </div>
@@ -78,11 +98,11 @@ const Card = ({company, contact}) => {
           <div className="card__section-info">
             <div className="card__section-row">
               <p className="card__section-key">ФИО</p>
-              <p className="card__section-value">{contact.lastName} {contact.firstName} {contact.patronymic}</p>
+              <p className="card__section-value">{contact.lastname} {contact.firstname} {contact.patronymic}</p>
             </div>
             <div className="card__section-row">
               <p className="card__section-key">Телефон</p>
-              <p className="card__section-value">+7 (916) 216-55-88</p>
+              <p className="card__section-value">{phone}</p>
             </div>
             <div className="card__section-row">
               <p className="card__section-key">Эл.почта</p>
@@ -93,33 +113,9 @@ const Card = ({company, contact}) => {
         <div className="card__section">
           <p className="card__section-title">Приложенные фото</p>
           <ul className="card__photos">
-            <li className="card__photo">
-              <div className="card__photo-img" style={{backgroundImage: `url(${Img1})`}}>
-                <button className="card__photo-delete" type="button" aria-label="удалить фото">
-                  <IconClose />
-                </button>
-              </div>
-              <p className="card__photo-title">Надгробный камень.jpg</p>
-              <p className="card__photo-date">11 июня 2018</p>
-            </li>
-            <li className="card__photo">
-              <div className="card__photo-img" style={{backgroundImage: `url(${Img2})`}}>
-                <button className="card__photo-delete" type="button" aria-label="удалить фото">
-                  <IconClose />
-                </button>
-              </div>
-              <p className="card__photo-title">Общий вид.jpg</p>
-              <p className="card__photo-date">11 июня 2018</p>
-            </li>
-            <li className="card__photo">
-              <div className="card__photo-img" style={{backgroundImage: `url(${Img3})`}}>
-                <button className="card__photo-delete" type="button" aria-label="удалить фото">
-                  <IconClose />
-                </button>
-              </div>
-              <p className="card__photo-title">Пример ограды.jpg</p>
-              <p className="card__photo-date">11 июня 2018</p>
-            </li>
+            {
+              company.photos.map((photo) => renderPhoto(photo))
+            }
           </ul>
           <button className="button  button--add" type="button"><span>Добавить изображение</span></button>
         </div>
