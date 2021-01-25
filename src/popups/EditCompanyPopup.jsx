@@ -6,6 +6,11 @@ import { DataActions } from '../redux/actions';
 
 import Popup from '../components/popup';
 
+const CompanyType = {
+  агент: 'agent',
+  подрядчик: 'contractor',
+};
+
 class EditCompanyNamePopup extends React.Component {
   constructor(props) {
     super(props);
@@ -13,10 +18,7 @@ class EditCompanyNamePopup extends React.Component {
     this.state = {
       name: null,
       businessEntity: null,
-      contract: {
-        no: null,
-        issue_date: null,
-      },
+      contract: null,
       type: null,
     };
   }
@@ -41,20 +43,21 @@ class EditCompanyNamePopup extends React.Component {
     } = this.props;
 
     const value = {};
-    if (name !== company.name) {
+    if (name && name !== company.name) {
       value.name = name;
     }
-    if (businessEntity !== company.businessEntity) {
+    if (businessEntity && businessEntity !== company.businessEntity) {
       value.businessEntity = businessEntity;
     }
-    if (type !== company.type) {
-      value.type = type;
+    if (type) {
+      const formatedType = type.split(', ').map((it) => CompanyType[it.toLowerCase()]);
+      value.type = formatedType;
     }
-    if (contract.no !== company.contract.no) {
-      value.contract.no = contract.no;
+    if (contract && contract.no && contract.no !== company.contract.no) {
+      value.contract = {...company.contract, no: contract.no};
     }
-    if (contract.isuue_date !== company.isuue_date) {
-      value.contract.issue_date = contract.issue_date;
+    if (contract && contract.issue_date && contract.issue_date !== company.issue_date) {
+      value.contract = {...company.contract, issue_date: contract.issue_date};
     }
 
     return (
@@ -72,6 +75,7 @@ class EditCompanyNamePopup extends React.Component {
             <input
               id="companyName"
               className="input-block__field"
+              type='text'
               placeholder={company.name}
               onChange={(evt) => {
                 this.setState({
@@ -85,6 +89,7 @@ class EditCompanyNamePopup extends React.Component {
             <input
               id="contractNumber"
               className="input-block__field"
+              type='text'
               placeholder={company.contract.no}
               onChange={(evt) => {
                 this.setState({
@@ -100,6 +105,7 @@ class EditCompanyNamePopup extends React.Component {
             <input
               id="contractIssueDate"
               className="input-block__field"
+              type='date'
               placeholder={moment(company.contract.issue_date).format('DD.MM.YYYY')}
               onChange={(evt) => {
                 this.setState({
@@ -115,6 +121,7 @@ class EditCompanyNamePopup extends React.Component {
             <input
               id="businessEntity"
               className="input-block__field"
+              type='text'
               placeholder={company.businessEntity}
               onChange={(evt) => {
                 this.setState({

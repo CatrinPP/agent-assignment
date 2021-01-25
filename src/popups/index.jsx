@@ -11,12 +11,14 @@ import DeleteCardPopup from './DeleteCardPopup';
 import EditCompanyNamePopup from './EditCompanyNamePopup';
 import EditCompanyPopup from './EditCompanyPopup';
 import EditContactPopup from './EditContactPopup';
+import FileUploadPopup from './FileUploadPopup';
 
 const popupComponents = () => ({
   DeleteCardPopup: () => DeleteCardPopup,
   EditCompanyNamePopup: () => EditCompanyNamePopup,
   EditCompanyPopup: () => EditCompanyPopup,
   EditContactPopup: () => EditContactPopup,
+  FileUploadPopup: () => FileUploadPopup,
 });
 
 const popupComponentProps = {};

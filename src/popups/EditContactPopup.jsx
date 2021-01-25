@@ -39,19 +39,19 @@ class EditContactPopup extends React.Component {
     } = this.props;
 
     const value = {};
-    if (lastname !== contact.lastname) {
+    if (lastname && lastname !== contact.lastname) {
       value.lastname = lastname;
     }
-    if (firstname !== contact.firstname) {
+    if (firstname && firstname !== contact.firstname) {
       value.firstname = firstname;
     }
-    if (patronymic !== contact.patronymic) {
+    if (patronymic && patronymic !== contact.patronymic) {
       value.patronymic = patronymic;
     }
-    if (phone !== contact.phone) {
+    if (phone && phone !== contact.phone) {
       value.phone = phone;
     }
-    if (email !== contact.email) {
+    if (email && email !== contact.email) {
       value.email = email;
     }
 
@@ -70,6 +70,7 @@ class EditContactPopup extends React.Component {
             <input
               id="lastname"
               className="input-block__field"
+              type='text'
               placeholder={contact.lastname}
               onChange={(evt) => {
                 this.setState({
@@ -83,6 +84,7 @@ class EditContactPopup extends React.Component {
             <input
               id="firstname"
               className="input-block__field"
+              type='text'
               placeholder={contact.firstname}
               onChange={(evt) => {
                 this.setState({
@@ -96,6 +98,7 @@ class EditContactPopup extends React.Component {
             <input
               id="patronymic"
               className="input-block__field"
+              type='text'
               placeholder={contact.patronymic}
               onChange={(evt) => {
                 this.setState({
@@ -109,6 +112,7 @@ class EditContactPopup extends React.Component {
             <input
               id="contactPhone"
               className="input-block__field"
+              type='tel'
               placeholder={contact.phone}
               onChange={(evt) => {
                 this.setState({
@@ -122,6 +126,7 @@ class EditContactPopup extends React.Component {
             <input
               id="contactEmail"
               className="input-block__field"
+              type='email'
               placeholder={contact.email}
               onChange={(evt) => {
                 this.setState({

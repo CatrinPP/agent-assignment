@@ -29,6 +29,7 @@ const Card = ({
   contact,
   showPopup,
   deleteCard,
+  deletePhoto,
 }) => {
   if (!company || !contact) {
     return <></>;
@@ -40,7 +41,12 @@ const Card = ({
   const renderPhoto = (photo) => (
     <li className="card__photo" key={photo.name}>
       <div className="card__photo-img" style={{backgroundImage: `url(${photo.thumbpath})`}}>
-        <button className="card__photo-delete" type="button" aria-label="удалить фото">
+        <button
+          className="card__photo-delete"
+          type="button"
+          aria-label="удалить фото"
+          onClick={() => deletePhoto(company.id, photo.name)}
+        >
           <IconClose />
         </button>
       </div>
@@ -161,7 +167,15 @@ const Card = ({
               company.photos.map((photo) => renderPhoto(photo))
             }
           </ul>
-          <button className="button  button--add" type="button"><span>Добавить изображение</span></button>
+          <button
+            className="button  button--add"
+            type="button"
+            onClick={() => {
+              showPopup('FileUploadPopup', {});
+            }}
+          >
+            <span>Добавить изображение</span>
+          </button>
         </div>
       </article>
     </div>
@@ -180,6 +194,9 @@ export default connect(
     },
     deleteCard: (companyId) => {
       dispatch(DataActions.deleteCard(companyId));
+    },
+    deletePhoto: (companyId, photoName) => {
+      dispatch(DataActions.deletePhoto(companyId, photoName));
     },
   }),
 )(Card);

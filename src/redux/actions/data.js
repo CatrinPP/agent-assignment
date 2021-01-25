@@ -91,26 +91,24 @@ const deleteCard = (id) => (dispatch, getState) => {
 };
 
 const updateContact = (id, params) => (dispatch, getState) => {
-  api.patch(`contacts/${id}`, {
-    ...params,
+  api.patch(`contacts/${id}`, {...params}, {
     headers: {
       Authorization: getState().AuthReducer.token,
     },
   })
-    .then(() => {
-      dispatch(updateContactAction());
+    .then((response) => {
+      dispatch(updateContactAction(response.data));
     });
 };
 
 const updateCompany = (id, params) => (dispatch, getState) => {
-  api.patch(`companies/${id}`, {
-    ...params,
+  api.patch(`companies/${id}`, {...params}, {
     headers: {
       Authorization: getState().AuthReducer.token,
     },
   })
-    .then(() => {
-      dispatch(updateCompanyAction());
+    .then((response) => {
+      dispatch(updateCompanyAction(response.data));
     });
 };
 
@@ -126,8 +124,7 @@ const deletePhoto = (id, name) => (dispatch, getState) => {
 };
 
 const addPhoto = (id, file) => (dispatch, getState) => {
-  api.post(`companies/${id}/image/`, {
-    file,
+  api.post(`companies/${id}/image/`, {file}, {
     headers: {
       Authorization: getState().AuthReducer.token,
     },
