@@ -21,12 +21,18 @@ const deleteCardAction = () => createAction(
   ActionsConstants.Data.DELETE_CARD,
 );
 
-const updateContactAction = () => createAction(
+const updateContactAction = (contact) => createAction(
   ActionsConstants.Data.UPDATE_CONTACT,
+  {
+    contact,
+  },
 );
 
-const updateCompanyAction = () => createAction(
+const updateCompanyAction = (company) => createAction(
   ActionsConstants.Data.UPDATE_COMPANY,
+  {
+    company,
+  },
 );
 
 const addPhotoAction = () => createAction(
@@ -86,7 +92,7 @@ const deleteCard = (id) => (dispatch, getState) => {
 
 const updateContact = (id, params) => (dispatch, getState) => {
   api.patch(`contacts/${id}`, {
-    params,
+    ...params,
     headers: {
       Authorization: getState().AuthReducer.token,
     },
@@ -98,7 +104,7 @@ const updateContact = (id, params) => (dispatch, getState) => {
 
 const updateCompany = (id, params) => (dispatch, getState) => {
   api.patch(`companies/${id}`, {
-    params,
+    ...params,
     headers: {
       Authorization: getState().AuthReducer.token,
     },

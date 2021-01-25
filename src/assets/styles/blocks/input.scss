@@ -1,0 +1,43 @@
+.input-block {
+  position: relative;
+  width: 400px;
+  max-width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  border-radius: 2px;
+
+
+  &__label {
+    position: absolute;
+    top: -10px;
+    left: 4px;
+    display: block;
+    padding: 3px;
+    background-color: $color-background;
+    font-size: 10px;
+    color: $color-secondary--dark;
+    text-transform: uppercase;
+  }
+
+  &__field {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cdcdcd;
+    background: none;
+
+    &:hover {
+      border-color: $color-secondary--dark;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $black;
+    }
+
+    &::placeholder {
+      color: $black;
+    }
+  }
+}

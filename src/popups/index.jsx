@@ -8,9 +8,15 @@ import {
 import { PopupActions } from '../redux/actions';
 
 import DeleteCardPopup from './DeleteCardPopup';
+import EditCompanyNamePopup from './EditCompanyNamePopup';
+import EditCompanyPopup from './EditCompanyPopup';
+import EditContactPopup from './EditContactPopup';
 
 const popupComponents = () => ({
   DeleteCardPopup: () => DeleteCardPopup,
+  EditCompanyNamePopup: () => EditCompanyNamePopup,
+  EditCompanyPopup: () => EditCompanyPopup,
+  EditContactPopup: () => EditContactPopup,
 });
 
 const popupComponentProps = {};

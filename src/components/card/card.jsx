@@ -87,12 +87,26 @@ const Card = ({
       <article className="card__content">
         <h2 className="card__title">
           <span>{company.shortName}</span>
-          <ButtonEdit />
+          <ButtonEdit onClick={() => {
+            showPopup('EditCompanyNamePopup', {
+              propsForBasePopup: {
+                actionBtnText: 'Сохранить',
+              },
+            });
+          }}
+          />
         </h2>
         <div className="card__section">
           <p className="card__section-title card__section-title--edit">
             Общая информация
-            <ButtonEdit />
+            <ButtonEdit onClick={() => {
+              showPopup('EditCompanyPopup', {
+                propsForBasePopup: {
+                  actionBtnText: 'Сохранить',
+                },
+              });
+            }}
+            />
           </p>
           <div className="card__section-info">
             <div className="card__section-row">
@@ -116,7 +130,14 @@ const Card = ({
         <div className="card__section">
           <p className="card__section-title card__section-title--edit">
             Контактные данные
-            <ButtonEdit />
+            <ButtonEdit onClick={() => {
+              showPopup('EditContactPopup', {
+                propsForBasePopup: {
+                  actionBtnText: 'Сохранить',
+                },
+              });
+            }}
+            />
           </p>
           <div className="card__section-info">
             <div className="card__section-row">
