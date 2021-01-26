@@ -69,6 +69,10 @@ button {
     &::after {
       transform: translate(0, -50%) rotate(90deg);
     }
+
+    span {
+      font-size: 14px;
+    }
   }
 
   &:hover,

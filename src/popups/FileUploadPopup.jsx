@@ -9,16 +9,12 @@ class FileUploadPopup extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.inputElement = React.createRef();
+    this.fileReader = null;
 
     this.state = {
       file: null,
     };
   }
-
-  // onFileChange() {
-
-  // }
 
   render() {
     const {
@@ -40,29 +36,29 @@ class FileUploadPopup extends React.Component {
         popupId={popupId}
         closeCallBack={closeCallBack}
         actionBtnText='Сохранить'
-        onActionBtnClick={() => addPhoto(company.id, file)}
+        onActionBtnClick={() => {
+          const formData = new FormData();
+          formData.append('file', file);
+          addPhoto(company.id, formData);
+        }}
         {...propsForBasePopup}
       >
-        <div className='upload-block t-center'>
+        <div className='upload t-center'>
           <label
             htmlFor='upload'
-            className='upload__label'
+            className='upload__label button  button--add'
           >
-            {/* Выбрать файл */}
             <input
               className='upload__control'
               id='upload'
               type="file"
-              // ref={this.inputElement}
               accept="image/jpeg,image/png,image/jpg"
-              onChange={(e) => {
-                this.setState({
-                  file: e.target.value,
-                });
-              }}
+              onChange={(e) => this.setState({file: e.target.files[0]})}
               onClick={(e) => e.stopPropagation()}
             />
+            <span>Выберите файл</span>
           </label>
+          <p className="upload__selected">{ file ? file.name : 'Файл не выбран' }</p>
         </div>
       </Popup>
     );

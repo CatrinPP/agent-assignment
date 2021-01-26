@@ -35,15 +35,14 @@ const updateCompanyAction = (company) => createAction(
   },
 );
 
-const addPhotoAction = () => createAction(
+const addPhotoAction = (photo) => createAction(
   ActionsConstants.Data.ADD_PHOTO,
+  photo,
 );
 
 const deletePhotoAction = (name) => createAction(
   ActionsConstants.Data.DELETE_PHOTO,
-  {
-    name,
-  },
+  name,
 );
 
 // Api requests
@@ -123,14 +122,15 @@ const deletePhoto = (id, name) => (dispatch, getState) => {
     });
 };
 
-const addPhoto = (id, file) => (dispatch, getState) => {
-  api.post(`companies/${id}/image/`, {file}, {
+const addPhoto = (id, formData) => (dispatch, getState) => {
+  api.post(`companies/${id}/image/`, formData, {
     headers: {
       Authorization: getState().AuthReducer.token,
+      'Content-Type': 'multipart/form-data',
     },
   })
-    .then(() => {
-      dispatch(addPhotoAction());
+    .then((response) => {
+      dispatch(addPhotoAction(response.data));
     });
 };
 

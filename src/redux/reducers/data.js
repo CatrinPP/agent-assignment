@@ -31,11 +31,17 @@ const handlers = createHandlers({
     ...state,
     company,
   }),
-  [ActionsConstants.Data.DELETE_PHOTO]: (state) => ({
+  [ActionsConstants.Data.DELETE_PHOTO]: (state, name) => {
+    state.company.photos.splice(state.company.photos.findIndex((it) => it.name === name), 1);
+    const updatedCompany = {...state.company};
+    return {...state, company: updatedCompany};
+  },
+  [ActionsConstants.Data.ADD_PHOTO]: (state, photo) => ({
     ...state,
-  }),
-  [ActionsConstants.Data.ADD_PHOTO]: (state) => ({
-    ...state,
+    company: {
+      ...state.company,
+      photos: [...state.company.photos, photo],
+    },
   }),
 });
 
