@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-import { AuthorizationStatus } from '../../const';
+import { AuthorizationStatus } from '../../constants/common';
 
 import Main from '../main/main';
 import Popups from '../../popups';

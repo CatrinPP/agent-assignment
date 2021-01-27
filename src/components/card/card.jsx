@@ -31,9 +31,6 @@ const Card = ({
   deleteCard,
   deletePhoto,
 }) => {
-  const phone = contact ? getPhoneFormated(contact.phone) : null;
-  const companyType = company ? getCompanyType(company.type) : null;
-
   const renderPhoto = (photo) => (
     <li className="card__photo" key={photo.name}>
       <div className="card__photo-img" style={{backgroundImage: `url(${photo.thumbpath})`}}>
@@ -54,7 +51,7 @@ const Card = ({
   return (
     <div className="card">
       <div className="card__navigation card-navigation">
-        <Link className="card-navigation__back" to='/companies'>
+        <Link className="card-navigation__back" to='/'>
           <IconArrow />
           <span>К списку юридических лиц</span>
         </Link>
@@ -128,7 +125,7 @@ const Card = ({
                   </div>
                   <div className="card__section-row">
                     <p className="card__section-key">Тип</p>
-                    <p className="card__section-value  card__section-value--capitalized">{companyType}</p>
+                    <p className="card__section-value  card__section-value--capitalized">{getCompanyType(company.type)}</p>
                   </div>
                 </div>
               </div>
@@ -151,7 +148,7 @@ const Card = ({
                   </div>
                   <div className="card__section-row">
                     <p className="card__section-key">Телефон</p>
-                    <p className="card__section-value">{phone}</p>
+                    <p className="card__section-value">{getPhoneFormated(contact.phone)}</p>
                   </div>
                   <div className="card__section-row">
                     <p className="card__section-key">Эл.почта</p>

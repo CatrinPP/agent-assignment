@@ -4,21 +4,22 @@ import {
 } from './reducerCreator';
 
 import ActionsConstants from '../../constants';
+import {AuthorizationStatus} from '../../constants/common';
 
 const initialState = {
-  authorizationStatus: 'NO_AUTH',
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
   token: '',
 };
 
 const handlers = createHandlers({
   [ActionsConstants.Auth.AUTH_SUCCESS]: (state, { token }) => ({
     ...state,
-    authorizationStatus: 'AUTH',
+    authorizationStatus: AuthorizationStatus.AUTH,
     token,
   }),
   [ActionsConstants.Auth.AUTH_FAIL]: (state) => ({
     ...state,
-    authorizationStatus: 'NO_AUTH',
+    authorizationStatus: AuthorizationStatus.NO_AUTH,
     token: '',
   }),
 });
